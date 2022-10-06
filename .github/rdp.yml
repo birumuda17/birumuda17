@@ -1,0 +1,29 @@
+ngrok
+
+Name: BiruMuda17
+on: [push, workflow_dispatch]
+
+jobs: 
+ Build:
+ 
+  Runs-on: windows-latest
+  
+  steps:
+  - name: DOWNLOADING
+    run: Invoke-WebRequest https://bin.equinox.io/c/4vmDzA7iaHb/ngrok-stable-windows-
+amd64.zip -OutFile ngrok.zip
+  -name: EXTRACT
+   run: Expand-Archive ngrok.zip
+  -name: AUTENTIFIKASI
+   run: .\ngrok\ngrok.exe authtoken 2FfT20rSbko4ile4F9ZKhRbrMvu_3KWTeJGwmXbXYyHxBQDEk
+   run: Set-ItemProperty -Path 'HKLM:\system\CurentControlSet\Terminal
+ server'-name "FDenyTSConnections" -Value 0
+   run: Enable NetFirewallRule -DisplayGroup "Remote Desktop"
+   run: Set-ItemProperty -Path 'HKLM:\system\CurentControlSet\Terminal
+ server\WinStations\RDP-Tcp' -name: "UserAuthentication" -Value 1
+   run: Set-LokalUser -name "runneradmin" -password (ConvertTo-SecureString -
+ -name: DONE!
+  run: .ngrok\ngrok.exe tcp 3389
+   
+
+
